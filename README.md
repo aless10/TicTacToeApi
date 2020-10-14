@@ -1,5 +1,14 @@
 # TicTacToeServer Challenge
 
+## TOC
+
+* [Version](#version)
+* [Description](#description)
+* [Examples](#examples)
+* [How to run the application](#how-to-run-the-application)
+* [Tests](#tests)
+
+
 ## Version
 
 0.3.0.dev
@@ -27,14 +36,6 @@ Some example curl calls to this endpoint along with the expected returns are as 
     {"winner": null}
     
  
-## Api
-
-There are three endpoint:
-
-    /api/status: it gives back the status of the application
-    /api/tic-tac-toe: it returns the winner of the given board
-    
-
 ## How to run the application
 
 ### With Docker
@@ -86,7 +87,7 @@ $ pip install -r requirements.txt
 
 You can run the application by executing the module ``server/run.py``. This will run the application on localhost and the default port is 5000.
 
-### Tests
+## Tests
 
 We use pytest to execute the tests. Just run in the terminal
 
@@ -94,4 +95,4 @@ We use pytest to execute the tests. Just run in the terminal
 $ pytest --cov=server tests/
 ```
 
-and hopefully all the tests should pass.
+and (hopefully) all the tests should pass.
