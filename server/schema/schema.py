@@ -2,7 +2,7 @@ import json
 
 from marshmallow import Schema, fields, post_load, pre_dump, post_dump
 
-from server.tic_tac_toe.board import Board
+from server.tic_tac_toe.board import Board, BoostedBoard
 
 
 class RequestSchema(Schema):
@@ -17,7 +17,7 @@ class BoostRequestSchema(RequestSchema):
 
     @post_load
     def make_request(self, data, **kwargs):
-        return Board.from_request(data["board"])
+        return BoostedBoard.from_request(data["board"])
 
 
 class ResponseSchema(Schema):
