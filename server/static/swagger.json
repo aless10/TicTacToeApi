@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "TicTacToe challenge",
-    "version": "0.3.0.dev",
+    "version": "0.3.0",
     "title": "TicTacToe Api",
     "contact": {
       "email": "alessio.izzo86@gmail.com"
