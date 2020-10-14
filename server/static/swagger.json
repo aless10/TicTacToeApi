@@ -38,7 +38,86 @@
               "properties": {
                 "board": {
                   "type": "array",
-                  "example": [["x", "x", "o"], ["x", "", "o"], ["", "", "o"]]
+                  "example": [
+                    [
+                      "x",
+                      "x",
+                      "o"
+                    ],
+                    [
+                      "x",
+                      "",
+                      "o"
+                    ],
+                    [
+                      "",
+                      "",
+                      "o"
+                    ]
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "winner": {
+                  "type": "string",
+                  "example": "x"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Error in handling the request data"
+          }
+        }
+      }
+    },
+    "/api/boost-tic-tac-toe": {
+      "post": {
+        "summary": "Alternative algorithm to calculate the winner",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "board": {
+                  "type": "array",
+                  "example": [
+                    [
+                      "x",
+                      "x",
+                      "o"
+                    ],
+                    [
+                      "x",
+                      "",
+                      "o"
+                    ],
+                    [
+                      "",
+                      "",
+                      "o"
+                    ]
+                  ]
                 }
               }
             }

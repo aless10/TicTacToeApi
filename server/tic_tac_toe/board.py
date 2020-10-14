@@ -34,3 +34,27 @@ class Board:
     @classmethod
     def from_request(cls, board):
         return cls([cell for row in board for cell in row])
+
+
+class BoostedBoard:
+
+    def __init__(self, board):
+        self.board = [Cell(i, player) for i, player in enumerate(board)]
+
+    def check_winner_by_player(self, player):
+        player_cells = sorted((cell.id for cell in self.board if cell.player and cell.player == player))
+        if len(player_cells) < 3:
+            return False
+        player_sets = set(itertools.combinations(player_cells, 3))
+        return player_sets.intersection(WINNING_CASES)
+
+    def calculate_winner(self):
+        winner = None
+        for player in PLAYERS:
+            if self.check_winner_by_player(player):
+                winner = player
+        return winner
+
+    @classmethod
+    def from_request(cls, board):
+        return cls([cell for row in board for cell in row])

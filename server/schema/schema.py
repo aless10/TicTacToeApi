@@ -13,6 +13,13 @@ class RequestSchema(Schema):
         return Board.from_request(data["board"])
 
 
+class BoostRequestSchema(RequestSchema):
+
+    @post_load
+    def make_request(self, data, **kwargs):
+        return Board.from_request(data["board"])
+
+
 class ResponseSchema(Schema):
     winner = fields.String(required=True)
 

@@ -12,12 +12,15 @@ log = logging.getLogger(__name__)
 
 class TicTacToe(MethodView):
 
+    request_schema = RequestSchema
+    response_schema = ResponseSchema
+
     def post(self):
         request_body = request.get_json(force=True)
         log.info("A new board has come: %s", request_body)
         result = {"winner": None}
         try:
-            board_model = RequestSchema().load(request_body)
+            board_model = self.request_schema().load(request_body)
         except ValidationError as e:
             log.error('Failed Schema Validation: %s', e)
             status_code = BadRequest.code
@@ -32,5 +35,5 @@ class TicTacToe(MethodView):
             except Exception as e:
                 log.exception("Exception occurred in task: %s", e)
                 status_code = InternalServerError.code
-        response = ResponseSchema().dump(result)
+        response = self.response_schema().dump(result)
         return Response(response, status=status_code, mimetype='application/json')
