@@ -2,7 +2,7 @@ import json
 
 from marshmallow import Schema, fields, post_load, pre_dump, post_dump
 
-from tic_tac_toe.board import Board
+from server.tic_tac_toe.board import Board
 
 
 class RequestSchema(Schema):

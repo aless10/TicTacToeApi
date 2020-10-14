@@ -5,7 +5,7 @@ from flask.views import MethodView
 from marshmallow import ValidationError
 from werkzeug.exceptions import BadRequest, InternalServerError
 
-from schema.schema import RequestSchema, ResponseSchema
+from server.schema.schema import RequestSchema, ResponseSchema
 
 log = logging.getLogger(__name__)
 

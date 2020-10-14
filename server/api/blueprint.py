@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from api.tic_tac_toe import TicTacToe
+from server.api.tic_tac_toe import TicTacToe
 from server.api.status import Status
 
 v1 = Blueprint('api', __name__, url_prefix='/api')
