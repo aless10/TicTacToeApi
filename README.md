@@ -7,6 +7,7 @@
 * [Examples](#examples)
 * [How to run the application](#how-to-run-the-application)
 * [Tests](#tests)
+* [Todo](#todo)
 
 
 ## Version
@@ -26,13 +27,13 @@ Each number should be either "x", "o", or "" for an empty square. The numbers co
 
 Some example curl calls to this endpoint along with the expected returns are as follows:
     
-    $ curl -d '{"board": [["x","x","x"],["o","o", ""],["","",""]]}' -H 'Content-Type: application/json' 127.0.0.1:5000
+    $ curl -d '{"board": [["x","x","x"],["o","o", ""],["","",""]]}' -H 'Content-Type: application/json' 127.0.0.1:5000/api/tic-tac-toe
     {"winner": "x"}
 
-    $ curl -d '{"board": [["o","",""],["x","o", "x"],["","","o"]]}' -H 'Content-Type: application/json' 127.0.0.1:5000
+    $ curl -d '{"board": [["o","",""],["x","o", "x"],["","","o"]]}' -H 'Content-Type: application/json' 127.0.0.1:5000/api/tic-tac-toe
     {"winner": "o"}
     
-    $ curl -d '{"board": [["x","","x"],["o","o", ""],["","",""]]}' -H 'Content-Type: application/json' 127.0.0.1:5000
+    $ curl -d '{"board": [["x","","x"],["o","o", ""],["","",""]]}' -H 'Content-Type: application/json' 127.0.0.1:5000/api/tic-tac-toe
     {"winner": null}
     
  
@@ -96,3 +97,11 @@ $ pytest --cov=server tests/
 ```
 
 and (hopefully) all the tests should pass.
+
+## TODO
+
+There are few things that we can add to this application
+
+   * cache: we can use redis to cache the requests so that we don't need to recalculate the winner every time
+   * check on symbols: there is no control over the symbols that are passed into the request body
+    
