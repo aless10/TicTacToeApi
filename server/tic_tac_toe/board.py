@@ -8,6 +8,10 @@ WINNING_CASES = {(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8
 PLAYERS = ["x", "o"]
 
 
+class TwoWinnersException(Exception):
+    pass
+
+
 class Cell:
 
     def __init__(self, _id: int, player: str) -> None:
@@ -45,9 +49,13 @@ class Board(BaseBoard):
 
     def calculate_winner(self):
         winner = None
+        counter = 0
         for player in PLAYERS:
             if self.check_winner_by_player(player):
+                counter += 1
                 winner = player
+        if counter > 1:
+            raise TwoWinnersException("Two winners are not allowed")
         return winner
 
     @classmethod

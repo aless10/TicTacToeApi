@@ -6,6 +6,7 @@ from marshmallow import ValidationError
 from werkzeug.exceptions import BadRequest, InternalServerError
 
 from server.schema.schema import RequestSchema, ResponseSchema
+from server.tic_tac_toe.board import TwoWinnersException
 
 log = logging.getLogger(__name__)
 
@@ -18,7 +19,7 @@ class TicTacToe(MethodView):
     def post(self):
         request_body = request.get_json(force=True)
         log.info("A new board has come: %s", request_body)
-        result = {"winner": None}
+        result = None
         try:
             board_model = self.request_schema().load(request_body)
         except ValidationError as e:
@@ -32,6 +33,9 @@ class TicTacToe(MethodView):
                 result = board_model.calculate_winner()
                 log.info("Winner calculation result: %s", result)
                 status_code = 200
+            except TwoWinnersException as e:
+                log.error('Two winners detected: %s', e)
+                status_code = BadRequest.code
             except Exception as e:
                 log.exception("Exception occurred in task: %s", e)
                 status_code = InternalServerError.code
